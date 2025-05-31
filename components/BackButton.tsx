@@ -6,11 +6,11 @@ export const BackButton = () => {
   const router = useRouter();
   
   return (
-    <Button 
+    <Button
       onClick={() => router.back()}
-      variant="secondary" 
+      variant="secondary"
       size="sm"
-      className="mb-4"
+      className="mb-4 self-start w-fit"
     >
       ← Back
     </Button>
