@@ -1,6 +1,9 @@
 import { MiniAppPaymentSuccessPayload } from "@worldcoin/minikit-js";
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
+import { getLatestPaymentReference } from "@/lib/db";
 
 interface IRequestPayload {
   payload: MiniAppPaymentSuccessPayload;
@@ -9,11 +12,17 @@ interface IRequestPayload {
 export async function POST(req: NextRequest) {
   const { payload } = (await req.json()) as IRequestPayload;
 
-  // IMPORTANT: Here we should fetch the reference you created in /initiate-payment to ensure the transaction we are verifying is the same one we initiated
-  //   const reference = getReferenceFromDB();
-  const cookieStore = cookies();
+  // Fetch the reference stored during /initiate-payment using the authenticated user
+  const session = await getServerSession(authOptions);
+  const userId = session?.user?.id ?? null;
 
-  const reference = cookieStore.get("payment-nonce")?.value;
+  let reference = getLatestPaymentReference(userId);
+
+  if (!reference) {
+    // Fallback to cookie if no record exists (legacy behaviour)
+    reference = cookies().get("payment-nonce")?.value || null;
+  }
+
   if (process.env.NODE_ENV !== "production") {
     console.log(reference);
   }
