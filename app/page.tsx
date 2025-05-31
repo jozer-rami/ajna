@@ -1,18 +1,23 @@
-import { PayBlock } from "@/components/Pay";
-import { SignIn } from "@/components/SignIn";
-import { VerifyBlock } from "@/components/Verify";
-import Link from "next/link";
-import { Button } from "@worldcoin/mini-apps-ui-kit-react";
+import { VerifyButton } from "@/components/VerifyButton";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 gap-y-3">
-      <SignIn />
-      <VerifyBlock />
-      <PayBlock />
-      <Link href="/start">
-        <Button variant="primary" size="lg" className="mt-6 text-black">Start</Button>
-      </Link>
+    <main className="relative min-h-screen overflow-hidden">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      >
+        <source src="/background.mp4" type="video/mp4" />
+      </video>
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <div className="flex-1" />
+        <footer className="p-4 flex justify-center">
+          <VerifyButton />
+        </footer>
+      </div>
     </main>
   );
 }
