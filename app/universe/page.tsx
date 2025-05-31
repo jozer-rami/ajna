@@ -28,7 +28,7 @@ export default function UniversePage() {
       </video>
       <div className="relative z-10 flex flex-col min-h-screen">
         <div className="p-4">
-          <BackButton />
+          <BackButton className="text-white border-white" />
         </div>
         <div className="flex-1" />
         <footer className="p-4 flex justify-center">

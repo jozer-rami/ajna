@@ -2,17 +2,21 @@
 import { useRouter } from 'next/navigation';
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 
-export const BackButton = () => {
+export type BackButtonProps = {
+  className?: string;
+};
+
+export const BackButton = ({ className }: BackButtonProps) => {
   const router = useRouter();
-  
+
   return (
-    <Button 
+    <Button
       onClick={() => router.back()}
-      variant="secondary" 
+      variant="secondary"
       size="sm"
-      className="mb-4"
+      className={`mb-4 ${className ?? ""}`}
     >
       ← Back
     </Button>
   );
-}; 
+};
