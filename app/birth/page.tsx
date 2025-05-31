@@ -15,7 +15,7 @@ export default function BirthPage() {
     if (process.env.NODE_ENV !== "production") {
       console.log("Birth info submitted", data);
     }
-    router.push("/payment");
+    router.push("/card-selection");
   };
 
   return (
