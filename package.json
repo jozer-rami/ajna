@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "rm -rf dist && tsc -p tsconfig.test.json && node --test test/paymentStore.test.js"
   },
   "dependencies": {
     "@worldcoin/mini-apps-ui-kit-react": "^1.2.3",
