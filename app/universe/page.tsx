@@ -22,7 +22,7 @@ export default function UniversePage() {
         </div>
         <div className="flex-1" />
         <footer className="p-4 flex justify-center">
-          <Link href="/start" onClick={playBackgroundVideo}>
+          <Link href="/birth" onClick={playBackgroundVideo}>
             <Button variant="primary" size="lg">Start</Button>
           </Link>
         </footer>

@@ -1,8 +1,19 @@
+"use client";
 import Link from "next/link";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import { BackButton } from "@/components/BackButton";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function MessagePage() {
+  const router = useRouter();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.push("/wait");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [router]);
+
   return (
     <main className="flex min-h-screen flex-col gap-6 p-4">
       <BackButton />
