@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
+import { BackButton } from "@/components/BackButton";
 
 export default function UniversePage() {
   return (
@@ -14,6 +15,9 @@ export default function UniversePage() {
         <source src="/universe.mp4" type="video/mp4" />
       </video>
       <div className="relative z-10 flex flex-col min-h-screen">
+        <div className="p-4">
+          <BackButton />
+        </div>
         <div className="flex-1" />
         <footer className="p-4 flex justify-center">
           <Link href="/start">
