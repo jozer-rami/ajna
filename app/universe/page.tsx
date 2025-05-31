@@ -1,9 +1,19 @@
-import Link from "next/link";
+"use client";
+import { useRouter } from "next/navigation";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import { BackButton } from "@/components/BackButton";
 import { playBackgroundVideo } from "@/lib/playVideo";
 
 export default function UniversePage() {
+  const router = useRouter();
+
+  const handleStart = () => {
+    playBackgroundVideo();
+    setTimeout(() => {
+      router.push("/birth");
+    }, 4000);
+  };
+
   return (
     <main className="relative min-h-screen overflow-hidden">
       <video
@@ -18,13 +28,11 @@ export default function UniversePage() {
       </video>
       <div className="relative z-10 flex flex-col min-h-screen">
         <div className="p-4">
-          <BackButton />
+          <BackButton className="text-white border-white" />
         </div>
         <div className="flex-1" />
         <footer className="p-4 flex justify-center">
-          <Link href="/birth" onClick={playBackgroundVideo}>
-            <Button variant="primary" size="lg">Start</Button>
-          </Link>
+          <Button onClick={handleStart} variant="primary" size="lg">Start</Button>
         </footer>
       </div>
     </main>

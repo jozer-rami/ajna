@@ -2,9 +2,13 @@
 import { useRouter } from 'next/navigation';
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 
-export const BackButton = () => {
+export type BackButtonProps = {
+  className?: string;
+};
+
+export const BackButton = ({ className }: BackButtonProps) => {
   const router = useRouter();
-  
+
   return (
     <Button
       onClick={() => router.back()}
@@ -15,4 +19,4 @@ export const BackButton = () => {
       ← Back
     </Button>
   );
-}; 
+};
