@@ -14,7 +14,7 @@ export const BackButton = ({ className }: BackButtonProps) => {
       onClick={() => router.back()}
       variant="secondary"
       size="sm"
-      className={`mb-4 ${className ?? ""}`}
+      className="mb-4 self-start w-fit"
     >
       ← Back
     </Button>
