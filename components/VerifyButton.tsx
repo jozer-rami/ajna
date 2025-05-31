@@ -2,6 +2,7 @@
 import { VerificationLevel } from "@worldcoin/minikit-js";
 import { useVerify, VerifyCommandInput } from "@/lib/useVerify";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
+import { useRouter } from "next/navigation";
 
 const verifyPayload: VerifyCommandInput = {
   action: "login",
@@ -10,11 +11,19 @@ const verifyPayload: VerifyCommandInput = {
 };
 
 export const VerifyButton = () => {
+  const router = useRouter();
   const { handleVerify, verifyResponse } = useVerify(verifyPayload);
+
+  const onVerify = async () => {
+    const res = await handleVerify();
+    if (res && 'status' in res && (res as any).status === 200) {
+      router.push('/universe');
+    }
+  };
 
   return (
     <div className="flex flex-col items-center">
-      <Button onClick={handleVerify} variant="primary" size="lg">
+      <Button onClick={onVerify} variant="primary" size="lg">
         Verify with World ID
       </Button>
       {verifyResponse && (
