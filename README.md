@@ -26,7 +26,10 @@ To use the application, you'll need to:
 
 2. **Configure Action**
    - In the Developer Portal, create an action in the "Incognito Actions" section
-   - Use the same action name in `components/Verify/index.tsx`
+   - Use the same action name in `components/VerifyButton.tsx`
+
+### Background video
+Place your optimized MP4 file at `public/background.mp4`. A placeholder file is included in this repository; replace it with your own video to display it as the home page background.
 
 View docs: [Docs](https://docs.world.org/)
 

@@ -14,8 +14,9 @@ const sendPayment = async () => {
     });
 
     const { id } = await res.json();
-
-    console.log(id);
+    if (process.env.NODE_ENV !== "production") {
+      console.log(id);
+    }
 
     const payload: PayCommandInput = {
       reference: id,
@@ -37,14 +38,18 @@ const sendPayment = async () => {
     }
     return null;
   } catch (error: unknown) {
-    console.log("Error sending payment", error);
+    if (process.env.NODE_ENV !== "production") {
+      console.log("Error sending payment", error);
+    }
     return null;
   }
 };
 
 export const handlePay = async () => {
   if (!MiniKit.isInstalled()) {
-    console.error("MiniKit is not installed");
+    if (process.env.NODE_ENV !== "production") {
+      console.error("MiniKit is not installed");
+    }
     return false;
   }
   const sendPaymentResponse = await sendPayment();
@@ -62,11 +67,15 @@ export const handlePay = async () => {
     const payment = await res.json();
     if (payment.success) {
       // Congrats your payment was successful!
-      console.log("SUCCESS!");
+      if (process.env.NODE_ENV !== "production") {
+        console.log("SUCCESS!");
+      }
       return true;
     } else {
       // Payment failed
-      console.log("FAILED!");
+      if (process.env.NODE_ENV !== "production") {
+        console.log("FAILED!");
+      }
       return false;
     }
   }

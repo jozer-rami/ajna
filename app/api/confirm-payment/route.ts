@@ -14,13 +14,16 @@ export async function POST(req: NextRequest) {
   const cookieStore = cookies();
 
   const reference = cookieStore.get("payment-nonce")?.value;
-
-  console.log(reference);
+  if (process.env.NODE_ENV !== "production") {
+    console.log(reference);
+  }
 
   if (!reference) {
     return NextResponse.json({ success: false });
   }
-  console.log(payload);
+  if (process.env.NODE_ENV !== "production") {
+    console.log(payload);
+  }
   // 1. Check that the transaction we received from the mini app is the same one we sent
   if (payload.reference === reference) {
     const response = await fetch(
