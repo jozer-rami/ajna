@@ -24,7 +24,7 @@ export default function BirthPage() {
   return (
     <main className="relative min-h-screen overflow-hidden">
       <Image
-        src="/birth.svg"
+        src="/birth.jpeg"
         alt="Birth background"
         fill
         priority
