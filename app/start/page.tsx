@@ -14,7 +14,7 @@ export default function StartPage() {
     const result = await handlePay();
     setLoading(false);
     if (result) {
-      router.push("/message");
+      router.push("/birth");
     } else {
       alert("Payment failed or was cancelled.");
     }
