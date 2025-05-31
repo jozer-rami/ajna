@@ -29,8 +29,12 @@ export default function CardSelectionPage() {
       </video>
       <div className="relative z-10 flex min-h-screen flex-col p-4">
         <BackButton />
+        <div className="text-center mt-8 mb-4">
+          <p className="text-white text-xl">Feel which card resonates within.</p>
+          <p className="text-white text-xl mt-2">Click the card that recognizes you.</p>
+        </div>
         <div className="flex flex-1 items-center justify-center">
-          <div className="flex flex-col gap-6 px-4 w-full max-w-sm">
+          <div className="flex flex-col gap-4 px-4 w-full max-w-[240px]">
             {cards.map((card) => (
               <button
                 key={card}
@@ -40,10 +44,10 @@ export default function CardSelectionPage() {
                 }`}
               >
                 <Image
-                  src={`/card-${card}.jpeg`}
+                  src={`/card-${card}.png`}
                   alt={`card ${card}`}
-                  width={300}
-                  height={450}
+                  width={200}
+                  height={300}
                   className="w-full h-auto object-contain"
                   priority
                 />
