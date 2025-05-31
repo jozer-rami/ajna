@@ -20,6 +20,7 @@ export default function UniversePage() {
   return (
     <main className="relative min-h-screen overflow-hidden">
       <video
+        autoPlay
         muted
         loop
         playsInline
