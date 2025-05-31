@@ -20,7 +20,7 @@ export default function UniversePage() {
         </div>
         <div className="flex-1" />
         <footer className="p-4 flex justify-center">
-          <Link href="/start">
+          <Link href="/birth">
             <Button variant="primary" size="lg">Start</Button>
           </Link>
         </footer>
