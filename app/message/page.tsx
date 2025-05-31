@@ -8,10 +8,7 @@ import { useRouter } from "next/navigation";
 export default function MessagePage() {
   const router = useRouter();
   useEffect(() => {
-    const timer = setTimeout(() => {
-      router.push("/wait");
-    }, 3000);
-    return () => clearTimeout(timer);
+    router.push("/wait");
   }, [router]);
 
   return (
