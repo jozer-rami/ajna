@@ -13,7 +13,7 @@ const verifyPayload: VerifyCommandInput = {
 
 export const VerifyButton = () => {
   const router = useRouter();
-  const { handleVerify, verifyResponse } = useVerify(verifyPayload);
+  const { handleVerify } = useVerify(verifyPayload);
 
   const onVerify = async () => {
     playBackgroundVideo();
@@ -24,15 +24,8 @@ export const VerifyButton = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <Button onClick={onVerify} variant="primary" size="lg">
-        Verify with World ID
-      </Button>
-      {verifyResponse && (
-        <pre className="mt-4 p-4 bg-gray-100 rounded-lg overflow-auto max-w-full">
-          <code>{JSON.stringify(verifyResponse, null, 2)}</code>
-        </pre>
-      )}
-    </div>
+    <Button onClick={onVerify} variant="primary" size="lg">
+      Verify with World ID
+    </Button>
   );
 };
