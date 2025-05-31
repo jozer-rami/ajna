@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BackButton } from "@/components/BackButton";
 import { useRouter } from "next/navigation";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
+import Image from "next/image";
 
 export default function BirthPage() {
   const router = useRouter();
@@ -21,10 +22,18 @@ export default function BirthPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col p-4">
-      <BackButton />
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-sm mx-auto w-full">
-        <h1 className="text-xl font-semibold text-center">Enter your birth information</h1>
+    <main className="relative min-h-screen overflow-hidden">
+      <Image
+        src="/birth.svg"
+        alt="Birth background"
+        fill
+        priority
+        className="object-cover"
+      />
+      <div className="relative z-10 flex min-h-screen flex-col p-4">
+        <BackButton />
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-sm mx-auto w-full">
+          <h1 className="text-xl font-semibold text-center">Enter your birth information</h1>
         <div className="flex gap-2">
           <input
             type="number"
@@ -77,6 +86,7 @@ export default function BirthPage() {
           Submit
         </Button>
       </form>
+      </div>
     </main>
   );
 }
