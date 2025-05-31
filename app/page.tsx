@@ -8,6 +8,7 @@ export default function Home() {
         muted
         loop
         playsInline
+        id="background-video"
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
         <source src="/background.mp4" type="video/mp4" />

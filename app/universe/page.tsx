@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import { BackButton } from "@/components/BackButton";
+import { playBackgroundVideo } from "@/lib/playVideo";
 
 export default function UniversePage() {
   return (
@@ -10,6 +11,7 @@ export default function UniversePage() {
         muted
         loop
         playsInline
+        id="background-video"
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
         <source src="/universe.mp4" type="video/mp4" />
@@ -20,7 +22,7 @@ export default function UniversePage() {
         </div>
         <div className="flex-1" />
         <footer className="p-4 flex justify-center">
-          <Link href="/birth">
+          <Link href="/birth" onClick={playBackgroundVideo}>
             <Button variant="primary" size="lg">Start</Button>
           </Link>
         </footer>
