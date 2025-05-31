@@ -1,0 +1,32 @@
+@import "@worldcoin/mini-apps-ui-kit-react/styles.css";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;900&family=Poppins:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  @apply font-raleway bg-white text-black;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-end-rgb));
+}
+
+h1, h2, h3 {
+  @apply font-poppins font-semibold tracking-airy;
+}
+
+button {
+  @apply font-raleway;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
