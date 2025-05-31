@@ -10,7 +10,7 @@ export default function Home() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="/background.mp4" type="video/mp4" />
+        <source src="/background.webm" type="video/webm" />
       </video>
       <div className="relative z-10 flex flex-col min-h-screen">
         <div className="flex-1" />
