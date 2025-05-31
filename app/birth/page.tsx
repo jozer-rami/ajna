@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { BackButton } from "@/components/BackButton";
 import { useRouter } from "next/navigation";
+import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 
 export default function BirthPage() {
   const router = useRouter();
@@ -72,7 +73,9 @@ export default function BirthPage() {
           <option value="Sydney, Australia" />
           <option value="Paris, France" />
         </datalist>
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">Submit</button>
+        <Button type="submit" variant="primary" size="lg">
+          Submit
+        </Button>
       </form>
     </main>
   );

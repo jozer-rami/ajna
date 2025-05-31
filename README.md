@@ -29,7 +29,7 @@ To use the application, you'll need to:
    - Use the same action name in `components/VerifyButton.tsx`
 
 ### Background animation
-Place your optimized SVG file at `public/background.svg`. A placeholder file is included in this repository; replace it with your own animation to display it as the home page background.
+Place your optimized MP4 file at `public/background.mp4`. A placeholder file is included in this repository; replace it with your own video to display it as the home page background.
 
 View docs: [Docs](https://docs.world.org/)
 
