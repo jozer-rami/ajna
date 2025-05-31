@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import { BackButton } from "@/components/BackButton";
+import { useRouter } from "next/navigation";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 
 export default function BirthPage() {
+  const router = useRouter();
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
@@ -15,6 +17,7 @@ export default function BirthPage() {
     if (process.env.NODE_ENV !== "production") {
       console.log("Birth info submitted", data);
     }
+    router.push("/message");
   };
 
   return (
