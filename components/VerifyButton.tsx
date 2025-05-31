@@ -3,6 +3,7 @@ import { VerificationLevel } from "@worldcoin/minikit-js";
 import { useVerify, VerifyCommandInput } from "@/lib/useVerify";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import { useRouter } from "next/navigation";
+import { playBackgroundVideo } from "@/lib/playVideo";
 
 const verifyPayload: VerifyCommandInput = {
   action: "login",
@@ -15,6 +16,7 @@ export const VerifyButton = () => {
   const { handleVerify, verifyResponse } = useVerify(verifyPayload);
 
   const onVerify = async () => {
+    playBackgroundVideo();
     const res = await handleVerify();
     if (res && 'status' in res && (res as any).status === 200) {
       router.push('/universe');
