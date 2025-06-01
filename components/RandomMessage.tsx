@@ -38,13 +38,29 @@ export const RandomMessage = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    // Get random message
     const randomIndex = Math.floor(Math.random() * messages.length);
-    const selectedMessage = messages[randomIndex];
-    setMessage(selectedMessage);
-    
-    // Store message in localStorage
-    localStorage.setItem('messageCID', selectedMessage);
+    const baseMessage = messages[randomIndex];
+    const number = localStorage.getItem('selectedCard') || '';
+
+    fetch('/api/generate-message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ baseMessage, number }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          setMessage(data.message);
+          localStorage.setItem('messageCID', data.message);
+        } else {
+          setMessage(baseMessage);
+          localStorage.setItem('messageCID', baseMessage);
+        }
+      })
+      .catch(() => {
+        setMessage(baseMessage);
+        localStorage.setItem('messageCID', baseMessage);
+      });
   }, []);
 
   return (
