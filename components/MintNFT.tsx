@@ -104,6 +104,9 @@ export const MintNFT = () => {
 
       if (txHash) {
         setSuccessTxHash(txHash)
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('mintTxHash', txHash)
+        }
       } else if ((response.finalPayload as any)?.error_code) {
         throw new Error('Transaction failed')
       }
@@ -143,17 +146,18 @@ export const MintNFT = () => {
       </Button>
       {error && <p className="text-red-600">{error}</p>}
       {successTxHash && (
-        <p className="text-green-600 break-all">
-          Transaction sent! TxHash{' '}
-          <a
-            href={`https://worldchain-mainnet.explorer.alchemy.com/tx/${successTxHash}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            {successTxHash}
-          </a>
-        </p>
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-green-600 break-all">Transaction sent!</p>
+          <Button asChild variant="primary" size="lg">
+            <a
+              href={`https://blockscout.com/tx/${successTxHash}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View on Blockscout
+            </a>
+          </Button>
+        </div>
       )}
     </div>
   )
