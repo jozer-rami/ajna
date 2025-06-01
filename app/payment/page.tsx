@@ -5,18 +5,20 @@ import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import { BackButton } from "@/components/BackButton";
 import { handlePay } from "@/components/Pay";
 import { RandomMessage } from "@/components/RandomMessage";
+import { MintNFT } from "@/components/MintNFT";
 import Image from "next/image";
 
 export default function PaymentPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [paymentComplete, setPaymentComplete] = useState(false);
 
   const onPay = async () => {
     setLoading(true);
     const result = await handlePay();
     setLoading(false);
     if (result) {
-      router.push("/message");
+      setPaymentComplete(true);
     } else {
       alert("Payment failed or was cancelled.");
     }
@@ -35,10 +37,21 @@ export default function PaymentPage() {
         <BackButton />
         <div className="flex-1 flex flex-col items-center justify-center gap-6">
           <RandomMessage />
-          <Button onClick={onPay} disabled={loading} variant="primary" size="lg">
-            Pay to mint your NFT card
-          </Button>
-          {loading && <p className="text-center">Processing payment...</p>}
+          {!paymentComplete ? (
+            <>
+              <Button onClick={onPay} disabled={loading} variant="primary" size="lg">
+                Pay to mint your NFT card
+              </Button>
+              {loading && <p className="text-center">Processing payment...</p>}
+            </>
+          ) : (
+            <div className="w-full max-w-sm mx-auto">
+              <h2 className="text-xl font-semibold text-center text-white mb-4">
+                Payment Complete! Mint your NFT
+              </h2>
+              <MintNFT />
+            </div>
+          )}
         </div>
       </div>
     </main>
