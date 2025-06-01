@@ -3,15 +3,18 @@ import { useRouter } from "next/navigation";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import { BackButton } from "@/components/BackButton";
 import { playBackgroundVideo } from "@/lib/playVideo";
+import { useState } from "react";
 
 export default function UniversePage() {
   const router = useRouter();
+  const [isStarting, setIsStarting] = useState(false);
 
   const handleStart = () => {
+    setIsStarting(true);
     playBackgroundVideo();
     setTimeout(() => {
       router.push("/birth");
-    }, 4000);
+    }, 5000);
   };
 
   return (
@@ -31,7 +34,12 @@ export default function UniversePage() {
           <BackButton className="text-white border-white" />
         </div>
         <div className="flex-1 flex items-center justify-center">
-          <Button onClick={handleStart} variant="primary" size="lg">
+          <Button 
+            onClick={handleStart} 
+            variant="primary" 
+            size="lg"
+            className={`transition-opacity duration-1000 ${isStarting ? 'opacity-0' : 'opacity-100'}`}
+          >
             Start
           </Button>
         </div>

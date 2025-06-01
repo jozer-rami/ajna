@@ -36,7 +36,7 @@ export default function PaymentPage() {
         <div className="flex-1 flex flex-col items-center justify-center gap-6">
           <RandomMessage />
           <Button onClick={onPay} disabled={loading} variant="primary" size="lg">
-            Pay
+            Pay to mint your NFT card
           </Button>
           {loading && <p className="text-center">Processing payment...</p>}
         </div>
