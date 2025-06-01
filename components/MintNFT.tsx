@@ -80,10 +80,10 @@ export const MintNFT = () => {
     setSuccessTxHash(null)
 
     try {
-      const fromAddress = MiniKit.user?.walletAddress
-      if (!fromAddress) {
-        throw new Error('Unable to detect your wallet address')
-      }
+      // const fromAddress = MiniKit.user?.walletAddress
+      // if (!fromAddress) {
+      //   throw new Error('Unable to detect your wallet address')
+      // }
       if (!cardId || !birthHash || !messageCID) {
         throw new Error('All fields are required')
       }
