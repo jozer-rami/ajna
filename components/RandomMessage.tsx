@@ -36,10 +36,17 @@ const messages = [
 
 export const RandomMessage = () => {
   const [message, setMessage] = useState('');
+
   useEffect(() => {
+    // Get random message
     const randomIndex = Math.floor(Math.random() * messages.length);
-    setMessage(messages[randomIndex]);
+    const selectedMessage = messages[randomIndex];
+    setMessage(selectedMessage);
+    
+    // Store message in localStorage
+    localStorage.setItem('messageCID', selectedMessage);
   }, []);
+
   return (
     <div className="max-w-2xl mx-auto px-4">
       <p className="text-center italic text-2xl font-light leading-relaxed text-white">{message}</p>

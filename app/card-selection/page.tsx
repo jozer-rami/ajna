@@ -10,6 +10,7 @@ export default function CardSelectionPage() {
 
   const handleSelect = (card: number) => {
     setSelected(card);
+    localStorage.setItem('selectedCard', card.toString());
     router.push(`/ritual-collection?card=${card}`);
   };
 

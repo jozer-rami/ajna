@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { MiniKit } from '@worldcoin/minikit-js'
 import { Button, Input } from '@worldcoin/mini-apps-ui-kit-react'
 import { useSession, signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
 
-export const NFT_CONTRACT_ADDRESS = '0xYourNFTContractAddressHere'
+export const NFT_CONTRACT_ADDRESS = '0xC72F8B1148D0d67397F543b37bedE31cf167D71D'
 
 const NFT_ABI = [
   {
@@ -26,9 +26,39 @@ export const MintNFT = () => {
   const { data: session } = useSession()
   const searchParams = useSearchParams()
 
-  const [cardId, setCardId] = useState(searchParams.get('card') || '')
-  const [birthHash, setBirthHash] = useState(searchParams.get('birthHash') || '')
-  const [messageCID, setMessageCID] = useState(searchParams.get('cid') || '')
+  const [cardId, setCardId] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('selectedCard') || searchParams.get('card') || ''
+    }
+    return searchParams.get('card') || ''
+  })
+
+  const [birthHash, setBirthHash] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('birthHash') || searchParams.get('birthHash') || ''
+    }
+    return searchParams.get('birthHash') || ''
+  })
+
+  const [messageCID, setMessageCID] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('messageCID') || searchParams.get('cid') || ''
+    }
+    return searchParams.get('cid') || ''
+  })
+
+  useEffect(() => {
+    if (cardId) localStorage.setItem('selectedCard', cardId)
+  }, [cardId])
+
+  useEffect(() => {
+    if (birthHash) localStorage.setItem('birthHash', birthHash)
+  }, [birthHash])
+
+  useEffect(() => {
+    if (messageCID) localStorage.setItem('messageCID', messageCID)
+  }, [messageCID])
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [successTxHash, setSuccessTxHash] = useState<string | null>(null)
@@ -116,7 +146,7 @@ export const MintNFT = () => {
         <p className="text-green-600 break-all">
           Transaction sent! TxHash{' '}
           <a
-            href={`https://worldscan.io/tx/${successTxHash}`}
+            href={`https://worldchain-mainnet.explorer.alchemy.com/tx/${successTxHash}`}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"

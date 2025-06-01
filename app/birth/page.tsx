@@ -9,11 +9,25 @@ export default function BirthPage() {
   const router = useRouter();
   const [birthDate, setBirthDate] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const data = { birthDate };
+    
+    // Convert birth date to bytes
+    const encoder = new TextEncoder();
+    const data = encoder.encode(birthDate);
+    
+    // Generate hash using SHA-256
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    
+    // Convert to hex string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const birthHash = '0x' + hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    // Store in localStorage
+    localStorage.setItem('birthHash', birthHash);
+    
     if (process.env.NODE_ENV !== "production") {
-      console.log("Birth info submitted", data);
+      console.log("Birth info submitted", { birthDate, birthHash });
     }
     router.push("/card-selection");
   };
