@@ -20,6 +20,7 @@ To use the application, you'll need to:
 
    - Create a new app to get your `APP_ID`
    - Get `DEV_PORTAL_API_KEY` from the API Keys section
+   - Request a Blockscout Merits API key and set `MERITS_API_KEY`
    - Navigate to "Sign in with World ID" page to get:
      - `WLD_CLIENT_ID`
      - `WLD_CLIENT_SECRET`
