@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import { BackButton } from "@/components/BackButton";
 import { handlePay } from "@/components/Pay";
+import { RandomMessage } from "@/components/RandomMessage";
 
 export default function PaymentPage() {
   const router = useRouter();
@@ -24,6 +25,7 @@ export default function PaymentPage() {
     <main className="flex min-h-screen flex-col p-4 gap-6">
       <BackButton />
       <div className="flex-1 flex flex-col items-center justify-center gap-6">
+        <RandomMessage />
         <Button onClick={onPay} disabled={loading} variant="primary" size="lg">
           Pay
         </Button>
