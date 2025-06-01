@@ -26,9 +26,6 @@ export default function RitualCollectionPage() {
       </video>
       <div className="relative z-10 flex min-h-screen flex-col p-4">
         <BackButton />
-        <div className="flex-1 flex flex-col items-center justify-center">
-          <h1 className="text-2xl font-semibold">Ritual Collection</h1>
-        </div>
         <footer className="flex justify-center p-4">
           <Button onClick={handleReveal} variant="primary" size="lg">
             Reveal
