@@ -6,6 +6,7 @@ import {
   PayCommandInput,
 } from "@worldcoin/minikit-js";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
+import { awardMerits } from "@/lib/merits";
 
 const sendPayment = async () => {
   try {
@@ -69,6 +70,9 @@ export const handlePay = async () => {
       // Congrats your payment was successful!
       if (process.env.NODE_ENV !== "production") {
         console.log("SUCCESS!");
+      }
+      if (MiniKit.walletAddress) {
+        await awardMerits(MiniKit.walletAddress, '20', 'Payment completed');
       }
       return true;
     } else {
