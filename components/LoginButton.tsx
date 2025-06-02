@@ -4,6 +4,7 @@ import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import { useRouter } from "next/navigation";
 import { playBackgroundVideo } from "@/lib/playVideo";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 export const LoginButton = () => {
   const router = useRouter();
@@ -29,11 +30,16 @@ export const LoginButton = () => {
     });
 
     if (finalPayload.status !== "error") {
-      await fetch("/api/complete-siwe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ payload: finalPayload, nonce }),
+      const resSignIn = await signIn("credentials", {
+        redirect: false,
+        payload: JSON.stringify(finalPayload),
+        nonce,
       });
+      if (!resSignIn || resSignIn.error) {
+        console.error(resSignIn?.error);
+        setLoading(false);
+        return;
+      }
       router.push("/universe");
     }
 
